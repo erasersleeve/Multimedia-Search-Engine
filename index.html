@@ -19,21 +19,16 @@
     $("#searchBtn").on("click", function(){
         searchTerm = $("#searchBox").val();
         var googleUrl = "https://www.googleapis.com/books/v1/volumes?q="+searchTerm;
+        var resultsDiv = $("#searchResults");
+        resultsDiv.empty();
         $.ajax({
         url:googleUrl,
         method:"GET"
         }).then(function(bookGet){
         console.log(bookGet); 
-
+        
         for (i=0; i<9; i++){
-        console.log(bookGet.items[0].volumeInfo.title);
-        console.log(bookGet.items[0].volumeInfo.subtitle);
-        console.log(bookGet.items[0].volumeInfo.authors[0]);
-        console.log("Public Domain: "+bookGet.items[0].accessInfo.publicDomain);
-        console.log("Pdf: "+bookGet.items[0].accessInfo.pdf.isAvailable);
-        console.log("Epub: "+bookGet.items[0].accessInfo.epub.isAvailable);
-        console.log("Sale: "+bookGet.items[0].saleInfo.saleability);
-        console.log("Buy link: "+bookGet.items[0].saleInfo.buyLink);
+        
         var title = bookGet.items[i].volumeInfo.title;
         var subtitle = bookGet.items[i].volumeInfo.subtitle;
         var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
@@ -42,7 +37,6 @@
         var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail;//img link
         var synop = bookGet.items[i].searchInfo.textSnippet;
         var buyLink = bookGet.items[0].saleInfo.buyLink;
-        var resultsDiv = $("#searchResults");
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
         var cardTitle = $("<h4>");
