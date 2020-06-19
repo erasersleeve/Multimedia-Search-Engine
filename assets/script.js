@@ -16,22 +16,25 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         }).then(function(bookGet){
         console.log(bookGet); 
         
-        for (i=0; i<9; i++){
+        for (i=0; i<10; i++){
         
-        var title = bookGet.items[i].volumeInfo.title;
-        var subtitle = bookGet.items[i].volumeInfo.subtitle;
-        var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail; //img link
+        
+        
+         //img link
         // var buyLink = bookGet.items[i].saleInfo.buyLink;
-        var selfLink = bookGet.items[i].selfLink;
+       
         
         // var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
         // var synop = bookGet.items[i].searchInfo.textSnippet;
         
-        //Some objects return without a searchInfo array and will break the page, this checks to see if there is an index before calling it
-        if (bookGet.items[i].searchInfo) {var synop = bookGet.items[i].searchInfo.textSnippet;}else{var synop ="Error"}
-        //Some pages do not provide author information, causing similar problem as above
+        
+        if (bookGet.items[i].searchInfo) {var synop = bookGet.items[i].searchInfo.textSnippet}else{var synop ="Error"}
         //Currently author only displays the first author, in the case of multiple authors this ignores all but the first
-        if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0];}else{var authors ="Error"}
+        if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0]}else{var authors ="Error"}
+        if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title="Error" }
+        if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle="Error"}
+        if (bookGet.items[i].volumeInfo.imageLinks.thumbnail) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg="Error"}
+        if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink="Error"}
 
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
