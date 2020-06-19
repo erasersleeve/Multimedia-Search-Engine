@@ -40,6 +40,10 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         // cardBuy.text("Link to purchase: "+buyLink);
         cardBuy.text("Link to google books: "+selfLink);
         coverImg.attr("src", coverSm);
+        // cardSynop.html(synop);
+        cardBuy.text("Link to purchase: "+ buyLink);
+        coverImg.attr("width", 300);
+        coverImg.attr("height", 400);
         resultsCard.attr("class", "card");
         resultsCard.append(cardTitle);
         resultsCard.append(cardSubtitle);
@@ -55,3 +59,9 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
     })
 
     })
+
+    $("form").keypress(function(e) {
+        if (e.which == 13) {
+          return false;
+        }
+      });
