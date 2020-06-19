@@ -16,6 +16,7 @@
     
         var moviePoster = movieGet.Search[i].Poster;
         var movieTitle = movieGet.Search[i].Title;
+        // var movieYear = movieGet.Search[i].Year;
         var resultsDiv = $("#movieCol");
         var resultsCard = $("<div>");
         var moviePosterImg = $("<img>");
