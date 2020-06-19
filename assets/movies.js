@@ -17,7 +17,7 @@ $("#searchBtn").on("click", function() {
     // console.log(movieGet.Search[0].imdbID);
     // console.log(movieGet.Search[0].Type);
     // console.log(movieGet.Search[0].Poster);
-    for (i=0; i<9; i++) {
+    for (i=0; i<10; i++) {
     
       // var searchTitle = movieGet.Search[i].Title;
       // var searchType = movieGet.Search[i].Type; Might be useful to display or sort by type 
