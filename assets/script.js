@@ -14,17 +14,25 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         url:googleUrl,
         method:"GET"
         }).then(function(bookGet){
-        // console.log(bookGet); 
+        console.log(bookGet); 
         
         for (i=0; i<9; i++){
         
         var title = bookGet.items[i].volumeInfo.title;
         var subtitle = bookGet.items[i].volumeInfo.subtitle;
-        var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
-        var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail;
-        var synop = bookGet.items[i].searchInfo.textSnippet;
-        var buyLink = bookGet.items[0].saleInfo.buyLink;
-         
+        var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail; //img link
+        // var buyLink = bookGet.items[i].saleInfo.buyLink;
+        var selfLink = bookGet.items[i].selfLink;
+        
+        // var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
+        // var synop = bookGet.items[i].searchInfo.textSnippet;
+        
+        //Some objects return without a searchInfo array and will break the page, this checks to see if there is an index before calling it
+        if (bookGet.items[i].searchInfo) {var synop = bookGet.items[i].searchInfo.textSnippet;}else{var synop ="Error"}
+        //Some pages do not provide author information, causing similar problem as above
+        //Currently author only displays the first author, in the case of multiple authors this ignores all but the first
+        if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0];}else{var authors ="Error"}
+
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
         var cardTitle = $("<h4>");
@@ -36,7 +44,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
         cardSynop.html(synop);
-        cardBuy.text("Link to purchase: "+ buyLink);
+        cardBuy.text("Link to gbooks: "+ selfLink);
         coverImg.attr("src", coverLg);
         coverImg.attr("width", 300);
         coverImg.attr("height", 400);
