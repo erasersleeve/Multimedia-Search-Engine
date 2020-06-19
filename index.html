@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Read it or Watch it?</title>
 
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&family=Berkshire+Swash&family=Limelight&display=swap" rel="stylesheet">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -17,13 +19,15 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- Link to CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
 
     <!-- Title of page  -->
     <div class="header">
-        <h1 class="title center-align">Read It or Watch It?</h1>
+        <h1 class="title center-align yellow-text text-darken-3 " id="Title">Read It or Watch It?</h1>
     </div>
 
     <section class="col s12 center-align">
@@ -34,13 +38,20 @@
             <form>
                 <div class="input-field col s12 m8 l6">
 
-                    <h5 class="bold-text">What book or movie are you interested in...</h5>
+                    <h5 class="bold-text" id="question">What book or movie are you interested in...</h5>
+
 
                     <form action="">
+                        
                         <div class="input-field">
+                            
+                            <a href="#" class="btn-floating yellow darken-3 prefix waves-effect waves-light" id="searchBtn">
+                                
+                                <i class="material-icons">search</i>
+                            </a>
                             <input type="text" id="mediaSearch">
                             <label for="mediaSearch">Enter Title Here</label>
-                            <button id="searchBtn">Go</button>
+                            
                         </div>
                     </form>
 
@@ -57,21 +68,24 @@
             <div class="row">
 
                 <!-- Books Info-->
-                <div id="bookCol" class="col s6">
-                    <h5 class="center-align">The Book</h5>
+                <div class="col s6 border-right" id="bookCol">
+                    <h3 class="center-align" id="theBook">The Book</h3>
+                    
+                    
                     
                 </div>
 
                 <!-- Movie Info -->
-                <div class="col s6">
-                    <h5 class="center-align">The Movie</h5>
-                  
+                <div class="col s6" id="movieCol">
+                    <h3 class="center-align" id="theMovie">The Movie</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ullam quo accusamus maxime voluptate explicabo consequuntur eligendi voluptas, facilis excepturi provident, voluptatem ipsam iste dolor repellendus in. Dolorum, error doloremque.</p>
+                    
                 </div>
 
             </div>
         </section>
     </main> 
-    <script src="Assets/script.js"></script>
+    <script src="assets/script.js"></script>
 </body>
 
 </html>
