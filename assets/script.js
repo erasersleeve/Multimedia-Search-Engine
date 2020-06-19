@@ -4,7 +4,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
     $("#searchBtn").on("click", function(event){
         event.preventDefault();
         searchTerm = $("#mediaSearch").val();
-        console.log(searchTerm);
+        // console.log(searchTerm);
         var googleUrl = "https://www.googleapis.com/books/v1/volumes?q="+searchTerm;
         var resultsDiv = $("#bookCol");
         var cardContainer = $("<div>");
