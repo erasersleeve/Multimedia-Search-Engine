@@ -17,7 +17,7 @@ $("#searchBtn").on("click", function() {
     
       var searchTitle = movieGet.Search[i].Title;
       var searchIMDBid = movieGet.Search[i].imdbID;
-      var searchType = movieGet.Search[i].Type;
+      // var searchType = movieGet.Search[i].Type; Might be useful to display or sort by type 
       var searchPoster = movieGet.Search[i].Poster;
       var resultsCard = $("<div>");
       var resultsDiv = $("#movieCol");
@@ -36,7 +36,22 @@ $("#searchBtn").on("click", function() {
         method: "GET"
       }).then (function(idGet) {
 
-        console.log(idGet);
+        // console.log(idGet);
+        console.log("Title: "+idGet.Title);
+        console.log("Director: "+idGet.Director);
+        console.log("Genre: "+idGet.Genre);
+        console.log("Language: "+idGet.Language);
+        console.log("Poster: "+idGet.Poster);
+        console.log("Synopsis: "+idGet.Plot);
+        console.log("Rating: "+idGet.Rated);
+        console.log("Metascore: "+idGet.Metascore);
+        console.log("IMDB rating: "+idGet.Ratings[0]);
+        console.log("Rotten Tomatoes: "+idGet.Ratings[1]);
+        console.log("Metacritic: "+idGet.Ratings[2]);
+        console.log("Type: "+idGet.Type);
+        console.log("Year: "+idGet.Year);
+        console.log("Runtime: "+idGet.Runtime);
+
 
       })
     }

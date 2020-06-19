@@ -14,7 +14,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         url:googleUrl,
         method:"GET"
         }).then(function(bookGet){
-        console.log(bookGet); 
+        // console.log(bookGet); 
         
         for (i=0; i<9; i++){
         
