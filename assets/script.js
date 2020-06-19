@@ -21,7 +21,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         var title = bookGet.items[i].volumeInfo.title;
         var subtitle = bookGet.items[i].volumeInfo.subtitle;
         var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
-        var coverSm = bookGet.items[i].volumeInfo.imageLinks.smallThumbnail; //img link
+        var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail;
         var synop = bookGet.items[i].searchInfo.textSnippet;
         var buyLink = bookGet.items[0].saleInfo.buyLink;
          
@@ -36,8 +36,10 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
         cardSynop.html(synop);
-        cardBuy.text("Link to purchase: "+buyLink);
-        coverImg.attr("src", coverSm);
+        cardBuy.text("Link to purchase: "+ buyLink);
+        coverImg.attr("src", coverLg);
+        coverImg.attr("width", 300);
+        coverImg.attr("height", 400);
         resultsCard.attr("class", "card");
         resultsCard.append(cardTitle);
         resultsCard.append(cardSubtitle);
