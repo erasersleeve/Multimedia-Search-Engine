@@ -55,3 +55,9 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
     })
 
     })
+
+    $("form").keypress(function(e) {
+        if (e.which == 13) {
+          return false;
+        }
+      });
