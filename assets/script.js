@@ -24,11 +24,14 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         // var buyLink = bookGet.items[i].saleInfo.buyLink;
         var selfLink = bookGet.items[i].selfLink;
         
-        var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
+        // var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
         // var synop = bookGet.items[i].searchInfo.textSnippet;
-
+        
+        //Some objects return without a searchInfo array and will break the page, this checks to see if there is an index before calling it
         if (bookGet.items[i].searchInfo) {var synop = bookGet.items[i].searchInfo.textSnippet;}else{var synop ="Error"}
-
+        //Some pages do not provide author information, causing similar problem as above
+        //Currently author only displays the first author, in the case of multiple authors this ignores all but the first
+        if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0];}else{var authors ="Error"}
 
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
