@@ -1,33 +1,32 @@
 // Setup Variables
-    var apiKey = "cc1189b";
+var apiKey = "da090e9b";
 
-    $("#searchBtn").on("click", function() {
-        movie = $("#searchBox").val();
+$("#searchBtn").on("click", function() {
+    searchTerm = $("#mediaSearch").val();
+
+    var queryURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apiKey=" + apiKey;
     
-        var queryURL = "https://www.omdbapi.com/?s=" + movie + "&apiKey=" + apiKey;
-        
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function(movieGet) {
-          console.log(movieGet);
-        
-        for (i=0; i<9; i++) {
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(movieGet) {
+      console.log(movieGet);
     
-        var moviePoster = movieGet.Search[i].Poster;
-        var movieTitle = movieGet.Search[i].Title;
-        // var movieYear = movieGet.Search[i].Year;
-        var resultsDiv = $("#movieCol");
-        var resultsCard = $("<div>");
-        var moviePosterImg = $("<img>");
-        var cardMovieTitle = $("<h4>");
-        moviePosterImg.attr("src", moviePoster);
-        cardMovieTitle.text(movieTitle);
-        resultsCard.attr("class", "card");
-        resultsCard.append(moviePosterImg);
-        resultsCard.append(cardMovieTitle);
-        resultsDiv.append(resultsCard);
-        resultsCard.css({"border-style": "solid", "margin": "20px"});
-        }
-    })
-    });
+    for (i=0; i<9; i++) {
+
+    var moviePoster = movieGet.Search[i].Poster;
+    var movieTitle = movieGet.Search[i].Title;
+    var resultsDiv = $("#movieCol");
+    var resultsCard = $("<div>");
+    var moviePosterImg = $("<img>");
+    var cardMovieTitle = $("<h4>");
+    moviePosterImg.attr("src", moviePoster);
+    cardMovieTitle.text(movieTitle);
+    resultsCard.attr("class", "card");
+    resultsCard.append(cardMovieTitle);
+    resultsCard.append(moviePosterImg);
+    resultsDiv.append(resultsCard);
+    resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
+    }
+})
+});
