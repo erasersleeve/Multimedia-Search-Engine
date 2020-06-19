@@ -47,7 +47,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         resultsCard.append(coverImg);
         cardContainer.append(resultsCard);
         resultsDiv.append(cardContainer);
-        resultsCard.css({"border-style": "solid", "margin": "20px"});
+        resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
         }
 
     })
