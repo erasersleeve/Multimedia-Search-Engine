@@ -20,12 +20,16 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         
         var title = bookGet.items[i].volumeInfo.title;
         var subtitle = bookGet.items[i].volumeInfo.subtitle;
-        var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
-        var coverSm = bookGet.items[i].volumeInfo.imageLinks.smallThumbnail; //img link
-        // var synop = bookGet.items[i].searchInfo.textSnippet;
-        var buyLink = bookGet.items[i].saleInfo.buyLink;
+        var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail; //img link
+        // var buyLink = bookGet.items[i].saleInfo.buyLink;
         var selfLink = bookGet.items[i].selfLink;
-         
+        
+        var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
+        // var synop = bookGet.items[i].searchInfo.textSnippet;
+
+        if (bookGet.items[i].searchInfo) {var synop = bookGet.items[i].searchInfo.textSnippet;}else{var synop ="Error"}
+
+
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
         var cardTitle = $("<h4>");
@@ -36,12 +40,9 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         cardTitle.text(title);
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
-        // cardSynop.html(synop);
-        // cardBuy.text("Link to purchase: "+buyLink);
-        cardBuy.text("Link to google books: "+selfLink);
-        coverImg.attr("src", coverSm);
-        // cardSynop.html(synop);
-        cardBuy.text("Link to purchase: "+ buyLink);
+        cardSynop.html(synop);
+        cardBuy.text("Link to gbooks: "+ selfLink);
+        coverImg.attr("src", coverLg);
         coverImg.attr("width", 300);
         coverImg.attr("height", 400);
         resultsCard.attr("class", "card");
