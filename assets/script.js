@@ -14,7 +14,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         url:googleUrl,
         method:"GET"
         }).then(function(bookGet){
-        // console.log(bookGet); 
+        console.log(bookGet); 
         
         for (i=0; i<9; i++){
         
@@ -22,8 +22,9 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         var subtitle = bookGet.items[i].volumeInfo.subtitle;
         var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
         var coverSm = bookGet.items[i].volumeInfo.imageLinks.smallThumbnail; //img link
-        var synop = bookGet.items[i].searchInfo.textSnippet;
-        var buyLink = bookGet.items[0].saleInfo.buyLink;
+        // var synop = bookGet.items[i].searchInfo.textSnippet;
+        var buyLink = bookGet.items[i].saleInfo.buyLink;
+        var selfLink = bookGet.items[i].selfLink;
          
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
@@ -35,8 +36,9 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         cardTitle.text(title);
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
-        cardSynop.html(synop);
-        cardBuy.text("Link to purchase: "+buyLink);
+        // cardSynop.html(synop);
+        // cardBuy.text("Link to purchase: "+buyLink);
+        cardBuy.text("Link to google books: "+selfLink);
         coverImg.attr("src", coverSm);
         resultsCard.attr("class", "card");
         resultsCard.append(cardTitle);
