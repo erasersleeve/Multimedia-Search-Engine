@@ -54,9 +54,10 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         
         linkBtn.text("Read on Google Books");
         linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');
+        linkBtn.attr("class", "btn blue lighten-2 prefix waves-effect waves-light")
         
-        // console.log(selfLink)
-        // console.log(buyLink)
+        console.log(selfLink)
+        console.log(buyLink)
         coverImg.attr("src", coverLg);
         coverImg.attr("width", 300);
         coverImg.attr("height", 400);
