@@ -21,8 +21,8 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         
         
          //img link
-        // var buyLink = bookGet.items[i].saleInfo.buyLink;
-       
+        var buyLink = bookGet.items[i].saleInfo.buyLink;
+        
         
         // var authors = bookGet.items[i].volumeInfo.authors[0]; //in case of multiple authors this won't work
         // var synop = bookGet.items[i].searchInfo.textSnippet;
