@@ -52,17 +52,22 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         var cardAuthor = $("<p>");
         var cardSynop = $("<p>");
         
-       
+        // button defined
+        var linkBtn = $("<button>");
+        var lineBreak = $("<br>");
 
         cardTitle.text(title);
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
         cardSynop.html(synop);
         
-       
+        // button link added along with CSS 
+        linkBtn.text("Read on Google Books");
+        linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');
+        linkBtn.attr("class", "btn blue lighten-2 prefix waves-effect waves-light")
         
-        // console.log(selfLink)
-        // console.log(buyLink)
+        console.log(selfLink)
+        console.log(buyLink)
         coverImg.attr("src", coverLg);
         coverImg.attr("width", 300);
         coverImg.attr("height", 400);
@@ -71,6 +76,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         resultsCard.append(cardSubtitle);
         resultsCard.append(cardAuthor);
         resultsCard.append(cardSynop);
+
         resultsCard.append(linkBtn);
         // moved to if statement // linkBtn.css({"margin": "10px"});
         resultsCard.append(lineBreak)
@@ -86,6 +92,8 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
 
     })
 
+
+    // when user hits enter, the page does not refresh
     $("form").keypress(function(e) {
         if (e.which == 13) {
           return false;
