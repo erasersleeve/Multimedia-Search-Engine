@@ -69,7 +69,7 @@ $("#searchBtn").on("click", function() {
         if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
         if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
         if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
-        if (idGet.Poster) {var moviePoster = idGet.Poster}else{var moviePoster ="Error"}
+        if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
         if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
 
         
@@ -78,24 +78,29 @@ $("#searchBtn").on("click", function() {
         var movieCardTitle = $("<h4>");
         var movieCardDirector = $("<p>");
         var movieCardSynop = $("<p>");
-        var trailerBtn = $("<button>");
         var movieCardRating = $("<p>");
-        var trailerTerm = searchTerm.split(" ").join("-");
+
+        // button defined 
+        var trailerBtn = $("<button>");
+        var lineBreak = $("<br>");
         
         movieCoverImg.attr("src", moviePoster);
         movieCardTitle.html(movieTitle);
         movieCardDirector.html(director);
         movieCardSynop.html(movieSynop);
-
-        trailerBtn.text("Watch the trailer:");
-        trailerBtn.attr("onclick", 'window.location.href=www.traileraddict.com/\'' + trailerTerm + '\'/trailer;');
-
         movieCardRating.html(imdbRating);
+
+        // button displayed and linked
+        trailerBtn.text("Watch");
+
         movieResultsCard.append(movieCardTitle);
         movieResultsCard.append(movieCardDirector);
         movieResultsCard.append(movieCardSynop);
-        resultsCard.append(trailerBtn);
-        trailerBtn.css({"margin": "10px"})
+
+        // show button on page
+        movieResultsCard.append(trailerBtn);
+        movieResultsCard.append(lineBreak);
+
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
         movieResultsCard.attr("class", "card");
