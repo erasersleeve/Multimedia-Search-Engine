@@ -16,7 +16,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         }).then(function(bookGet){
         console.log(bookGet); 
         
-        for (i=0; i<10; i++){
+        for (i=0; i<bootGet.items.length; i++){
         
         
         
