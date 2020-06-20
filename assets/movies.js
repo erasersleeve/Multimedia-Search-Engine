@@ -1,6 +1,5 @@
 // Setup Variables
 var apiKey = "da090e9b";
-
 $("#searchBtn").on("click", function() {
     searchTerm = $("#mediaSearch").val();
     var searchURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apiKey=" + apiKey;
@@ -19,7 +18,6 @@ $("#searchBtn").on("click", function() {
     // console.log(movieGet.Search[0].Type);
     // console.log(movieGet.Search[0].Poster);
     for (i=0; i<movieGet.Search.length; i++) {
-    
       // var searchTitle = movieGet.Search[i].Title;
       // var searchType = movieGet.Search[i].Type; Might be useful to display or sort by type 
       // var searchPoster = movieGet.Search[i].Poster;
@@ -40,8 +38,6 @@ $("#searchBtn").on("click", function() {
         url:idURL,
         method: "GET"
       }).then (function(idGet) {
-
-
         // console.log(idGet);
         // console.log("Title: "+idGet.Title);
         // console.log("Director: "+idGet.Director);
@@ -57,7 +53,6 @@ $("#searchBtn").on("click", function() {
         // console.log("Type: "+idGet.Type);
         // console.log("Year: "+idGet.Year);
         // console.log("Runtime: "+idGet.Runtime);
-       
         // var movieTitle = idGet.Title;
         // var director = idGet.Director;
         // var movieSynop = idGet.Plot;
@@ -69,33 +64,34 @@ $("#searchBtn").on("click", function() {
         if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
         if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
         if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
-        if (idGet.Poster) {var moviePoster = idGet.Poster}else{var moviePoster ="Error"}
+        if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
         if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
-
-        
         var movieResultsCard = $("<div>");
         var movieCoverImg = $("<img>");
         var movieCardTitle = $("<h4>");
         var movieCardDirector = $("<p>");
         var movieCardSynop = $("<p>");
-        var trailerBtn = $("<button>");
         var movieCardRating = $("<p>");
-        var trailerTerm = searchTerm.split(" ").join("-");
-        
+        // button defined 
+        var trailerBtn = $("<button>");
+        var lineBreak = $("<br>");
         movieCoverImg.attr("src", moviePoster);
         movieCardTitle.html(movieTitle);
         movieCardDirector.html(director);
         movieCardSynop.html(movieSynop);
-
-        trailerBtn.text("Watch the trailer:");
-        trailerBtn.attr("onclick", 'window.location.href=www.traileraddict.com/\'' + trailerTerm + '\'/trailer;');
-
         movieCardRating.html(imdbRating);
+        // button displayed and linked
+        trailerBtn.text("Watch Trailer Here");
+        var titleForLink = idGet.Title.split(" ").join("-");
+        // example: https://www.traileraddict.com/lion-king/trailer
+        // trailerBtn.attr("onclick", 'window.location.href= \'' + 'https://www.traileraddict.com/lion-king/trailer' + '\';');
+        trailerBtn.attr("onclick", `window.location.href= 'https://www.imdb.com/find?q=${titleForLink}';`);
         movieResultsCard.append(movieCardTitle);
         movieResultsCard.append(movieCardDirector);
         movieResultsCard.append(movieCardSynop);
-        resultsCard.append(trailerBtn);
-        trailerBtn.css({"margin": "10px"})
+        // show button on page
+        movieResultsCard.append(trailerBtn);
+        movieResultsCard.append(lineBreak);
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
         movieResultsCard.attr("class", "card");
@@ -106,7 +102,6 @@ $("#searchBtn").on("click", function() {
     }
 })
 });
-
 $("form").keypress(function(e) {
   if (e.which == 13) {
     return false;
