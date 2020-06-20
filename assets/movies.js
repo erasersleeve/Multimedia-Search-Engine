@@ -72,23 +72,14 @@ $("#searchBtn").on("click", function() {
         var movieCardDirector = $("<p>");
         var movieCardSynop = $("<p>");
         var movieCardRating = $("<p>");
-<<<<<<< HEAD
         // button defined 
         var trailerBtn = $("<button>");
         var lineBreak = $("<br>");
-=======
-        
-        // button defined 
-        var trailerBtn = $("<button>");
-        var lineBreak = $("<br>");
-        
->>>>>>> 039459b940eb69b49601dd737096bec200beac73
         movieCoverImg.attr("src", moviePoster);
         movieCardTitle.html(movieTitle);
         movieCardDirector.html(director);
         movieCardSynop.html(movieSynop);
         movieCardRating.html(imdbRating);
-<<<<<<< HEAD
         // button displayed and linked
         trailerBtn.text("Watch Trailer Here");
         var titleForLink = idGet.Title.split(" ").join("-");
@@ -101,24 +92,6 @@ $("#searchBtn").on("click", function() {
         // show button on page
         movieResultsCard.append(trailerBtn);
         movieResultsCard.append(lineBreak);
-=======
-
-        // button displayed and linked
-        trailerBtn.text("Watch Trailer Here");
-        var titleForLink = movieTitle.split(" ").join("-");
-        // example: https://www.traileraddict.com/lion-king/trailer
-        // trailerBtn.attr("onclick", 'window.location.href= \'' + 'https://www.traileraddict.com/lion-king/trailer' + '\';');
-        trailerBtn.attr("onclick", `window.location.href= 'https://www.traileraddict.com/${titleForLink}/trailer';`);
-
-        movieResultsCard.append(movieCardTitle);
-        movieResultsCard.append(movieCardDirector);
-        movieResultsCard.append(movieCardSynop);
-
-        // show button on page
-        movieResultsCard.append(trailerBtn);
-        movieResultsCard.append(lineBreak);
-
->>>>>>> 039459b940eb69b49601dd737096bec200beac73
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
         movieResultsCard.attr("class", "card");
@@ -133,9 +106,4 @@ $("form").keypress(function(e) {
   if (e.which == 13) {
     return false;
   }
-<<<<<<< HEAD
 });
-=======
-});
-
->>>>>>> 039459b940eb69b49601dd737096bec200beac73
