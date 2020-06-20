@@ -5,11 +5,11 @@ $("#searchBtn").on("click", function() {
     searchTerm = $("#mediaSearch").val();
     var searchURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apiKey=" + apiKey;
     $("#moviecontain").empty();
-    $("#contain").empty();
     var movieResultsDiv = $("#movieCol");
-    var movieCardContainer = $("<div>");
-    movieCardContainer.attr("id", "moviecontain") //can probably make this a class and share one command, or just use one to clear both sides
-    
+    var movieDiv = $("#movieResults")
+    // var movieCardContainer = $("<div>");
+    // movieCardContainer.attr("id", "moviecontain") //can probably make this a class and share one command, or just use one to clear both sides
+    movieDiv.empty();
     $.ajax({
       url: searchURL,
       method: "GET"
@@ -93,8 +93,8 @@ $("#searchBtn").on("click", function() {
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
         movieResultsCard.attr("class", "card");
-        movieCardContainer.append(movieResultsCard);
-        movieResultsDiv.append(movieCardContainer);
+        movieDiv.append(movieResultsCard);
+        movieResultsDiv.append(movieDiv);
         movieResultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
         })
     }
