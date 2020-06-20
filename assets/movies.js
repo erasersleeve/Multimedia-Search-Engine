@@ -58,15 +58,20 @@ $("#searchBtn").on("click", function() {
         // console.log("Year: "+idGet.Year);
         // console.log("Runtime: "+idGet.Runtime);
        
-        var movieTitle = idGet.Title;
-        var director = idGet.Director;
-        var movieSynop = idGet.Plot;
-        var moviePoster = idGet.Poster;
-        var imdbRating = idGet.Ratings[0];
+        // var movieTitle = idGet.Title;
+        // var director = idGet.Director;
+        // var movieSynop = idGet.Plot;
+        // var moviePoster = idGet.Poster;
+        // var imdbRating = idGet.Ratings[0];
         // var imdbType = idGet.Type;
         // var imdbYear = idGet.Year;
         // var runtime = idGet.Runtime;
-        
+        if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
+        if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
+        if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
+        if (idGet.Poster) {var moviePoster = idGet.Poster}else{var moviePoster ="Error"}
+        if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
+
         
         var movieResultsCard = $("<div>");
         var movieCoverImg = $("<img>");
