@@ -12,12 +12,13 @@ $("#searchBtn").on("click", function() {
       url: searchURL,
       method: "GET"
     }).then(function(movieGet) {
+      console.log(movieGet);
     // console.log(movieGet);
     // console.log(movieGet.Search[0].Title);
     // console.log(movieGet.Search[0].imdbID);
     // console.log(movieGet.Search[0].Type);
     // console.log(movieGet.Search[0].Poster);
-    for (i=0; i<10; i++) {
+    for (i=0; i<movieGet.Search.length; i++) {
     
       // var searchTitle = movieGet.Search[i].Title;
       // var searchType = movieGet.Search[i].Type; Might be useful to display or sort by type 
@@ -39,6 +40,7 @@ $("#searchBtn").on("click", function() {
         url:idURL,
         method: "GET"
       }).then (function(idGet) {
+
 
         // console.log(idGet);
         // console.log("Title: "+idGet.Title);
