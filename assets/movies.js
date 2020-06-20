@@ -79,7 +79,7 @@ $("#searchBtn").on("click", function() {
         var movieCardDirector = $("<p>");
         var movieCardSynop = $("<p>");
         var movieCardRating = $("<p>");
-
+        
         // button defined 
         var trailerBtn = $("<button>");
         var lineBreak = $("<br>");
@@ -91,7 +91,11 @@ $("#searchBtn").on("click", function() {
         movieCardRating.html(imdbRating);
 
         // button displayed and linked
-        trailerBtn.text("Watch");
+        trailerBtn.text("Watch Trailer Here");
+        var titleForLink = movieTitle.split(" ").join("-");
+        // example: https://www.traileraddict.com/lion-king/trailer
+        // trailerBtn.attr("onclick", 'window.location.href= \'' + 'https://www.traileraddict.com/lion-king/trailer' + '\';');
+        trailerBtn.attr("onclick", `window.location.href= 'https://www.traileraddict.com/${titleForLink}/trailer';`);
 
         movieResultsCard.append(movieCardTitle);
         movieResultsCard.append(movieCardDirector);
@@ -117,3 +121,4 @@ $("form").keypress(function(e) {
     return false;
   }
 });
+
