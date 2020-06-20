@@ -35,6 +35,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle="Error"}
         if (bookGet.items[i].volumeInfo.imageLinks.thumbnail) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg="Error"}
         if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink="Error"}
+        if (bookGet.items[i].saleInfo.buyLink) { var buyLink = bookGet.items[i].saleInfo.buyLink} else {var buyLink="Error"}
 
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
@@ -42,12 +43,20 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         var cardSubtitle = $("<p>");
         var cardAuthor = $("<p>");
         var cardSynop = $("<p>");
-        var cardBuy = $("<p>");
+        
+        var linkBtn = $("<button>");
+        var lineBreak = $("<br>");
+
         cardTitle.text(title);
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
         cardSynop.html(synop);
-        cardBuy.text("Link to gbooks: "+ selfLink);
+        
+        linkBtn.text("Read on Google Books");
+        linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');
+        
+        // console.log(selfLink)
+        // console.log(buyLink)
         coverImg.attr("src", coverLg);
         coverImg.attr("width", 300);
         coverImg.attr("height", 400);
@@ -56,12 +65,16 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         resultsCard.append(cardSubtitle);
         resultsCard.append(cardAuthor);
         resultsCard.append(cardSynop);
-        resultsCard.append(cardBuy);
+        resultsCard.append(linkBtn);
+        linkBtn.css({"margin": "10px"})
+        resultsCard.append(lineBreak)
+        
         resultsCard.append(coverImg);
         cardContainer.append(resultsCard);
         resultsDiv.append(cardContainer);
         resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
-        }
+        
+      }
 
     })
 
