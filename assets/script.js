@@ -4,12 +4,12 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
     $("#searchBtn").on("click", function(event){
         event.preventDefault();
         searchTerm = $("#mediaSearch").val();
-        // console.log(searchTerm);
         var googleUrl = "https://www.googleapis.com/books/v1/volumes?q="+searchTerm;
         var resultsDiv = $("#bookCol");
-        var cardContainer = $("<div>");
-        cardContainer.attr("id", "contain")
-        $("#contain").empty();
+        var bookDiv = $("#bookResults");
+        // cardContainer.attr("id", "contain")
+        // var cardContainer = $("<div>");
+        bookDiv.empty();
         $.ajax({
         url:googleUrl,
         method:"GET"
@@ -66,8 +66,8 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');
         linkBtn.attr("class", "btn blue lighten-2 prefix waves-effect waves-light")
         
-        console.log(selfLink)
-        console.log(buyLink)
+        
+
         coverImg.attr("src", coverLg);
         coverImg.attr("width", 300);
         coverImg.attr("height", 400);
@@ -82,8 +82,8 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         resultsCard.append(lineBreak)
         
         resultsCard.append(coverImg);
-        cardContainer.append(resultsCard);
-        resultsDiv.append(cardContainer);
+        bookDiv.append(resultsCard);
+        resultsDiv.append(bookDiv);
         resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
         
       }
