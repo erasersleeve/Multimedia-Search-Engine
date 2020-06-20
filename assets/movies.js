@@ -78,16 +78,24 @@ $("#searchBtn").on("click", function() {
         var movieCardTitle = $("<h4>");
         var movieCardDirector = $("<p>");
         var movieCardSynop = $("<p>");
+        var trailerBtn = $("<button>");
         var movieCardRating = $("<p>");
+        var trailerTerm = searchTerm.split(" ").join("-");
         
         movieCoverImg.attr("src", moviePoster);
         movieCardTitle.html(movieTitle);
         movieCardDirector.html(director);
         movieCardSynop.html(movieSynop);
+
+        trailerBtn.text("Watch the trailer:");
+        trailerBtn.attr("onclick", 'window.location.href=www.traileraddict.com/\'' + trailerTerm + '\'/trailer;');
+
         movieCardRating.html(imdbRating);
         movieResultsCard.append(movieCardTitle);
         movieResultsCard.append(movieCardDirector);
         movieResultsCard.append(movieCardSynop);
+        resultsCard.append(trailerBtn);
+        trailerBtn.css({"margin": "10px"})
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
         movieResultsCard.attr("class", "card");
