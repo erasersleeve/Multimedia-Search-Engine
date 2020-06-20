@@ -69,7 +69,7 @@ $("#searchBtn").on("click", function() {
         if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
         if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
         if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
-        if (idGet.Poster!=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
+        if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
         if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
 
         
