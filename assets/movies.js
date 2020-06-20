@@ -4,10 +4,12 @@ var apiKey = "da090e9b";
 $("#searchBtn").on("click", function() {
     searchTerm = $("#mediaSearch").val();
     var searchURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apiKey=" + apiKey;
+    $("#moviecontain").empty();
+    $("#contain").empty();
     var movieResultsDiv = $("#movieCol");
     var movieCardContainer = $("<div>");
     movieCardContainer.attr("id", "moviecontain") //can probably make this a class and share one command, or just use one to clear both sides
-    $("#moviecontain").empty();
+    
     $.ajax({
       url: searchURL,
       method: "GET"

@@ -7,9 +7,9 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         // console.log(searchTerm);
         var googleUrl = "https://www.googleapis.com/books/v1/volumes?q="+searchTerm;
         var resultsDiv = $("#bookCol");
-        var cardContainer = $("<div>");
-        cardContainer.attr("id", "contain")
-        $("#contain").empty();
+        // var cardContainer = $("<div>");
+        // cardContainer.attr("id", "contain")
+        $("#bookResults").empty();
         $.ajax({
         url:googleUrl,
         method:"GET"
@@ -76,8 +76,8 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         resultsCard.append(lineBreak)
         
         resultsCard.append(coverImg);
-        cardContainer.append(resultsCard);
-        resultsDiv.append(cardContainer);
+        $("#bookResults").append(resultsCard);
+        resultsDiv.append("#bookResults");
         resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
         
       }
