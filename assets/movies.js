@@ -69,7 +69,7 @@ $("#searchBtn").on("click", function() {
         if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
         if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
         if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
-        if (idGet.Poster) {var moviePoster = idGet.Poster}else{var moviePoster ="Error"}
+        // if (idGet.Poster) {var moviePoster = idGet.Poster}else{var moviePoster =""}
         if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
 
         
@@ -80,7 +80,7 @@ $("#searchBtn").on("click", function() {
         var movieCardSynop = $("<p>");
         var movieCardRating = $("<p>");
         
-        movieCoverImg.attr("src", moviePoster);
+        // movieCoverImg.attr("src", moviePoster);
         movieCardTitle.html(movieTitle);
         movieCardDirector.html(director);
         movieCardSynop.html(movieSynop);
