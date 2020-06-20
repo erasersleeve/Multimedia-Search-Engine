@@ -12,12 +12,13 @@ $("#searchBtn").on("click", function() {
       url: searchURL,
       method: "GET"
     }).then(function(movieGet) {
+      console.log(movieGet);
     // console.log(movieGet);
     // console.log(movieGet.Search[0].Title);
     // console.log(movieGet.Search[0].imdbID);
     // console.log(movieGet.Search[0].Type);
     // console.log(movieGet.Search[0].Poster);
-    for (i=0; i<10; i++) {
+    for (i=0; i<movieGet.Search.length; i++) {
     
       // var searchTitle = movieGet.Search[i].Title;
       // var searchType = movieGet.Search[i].Type; Might be useful to display or sort by type 
@@ -40,6 +41,7 @@ $("#searchBtn").on("click", function() {
         method: "GET"
       }).then (function(idGet) {
 
+
         // console.log(idGet);
         // console.log("Title: "+idGet.Title);
         // console.log("Director: "+idGet.Director);
@@ -56,15 +58,20 @@ $("#searchBtn").on("click", function() {
         // console.log("Year: "+idGet.Year);
         // console.log("Runtime: "+idGet.Runtime);
        
-        var movieTitle = idGet.Title;
-        var director = idGet.Director;
-        var movieSynop = idGet.Plot;
-        var moviePoster = idGet.Poster;
-        var imdbRating = idGet.Ratings[0];
+        // var movieTitle = idGet.Title;
+        // var director = idGet.Director;
+        // var movieSynop = idGet.Plot;
+        // var moviePoster = idGet.Poster;
+        // var imdbRating = idGet.Ratings[0];
         // var imdbType = idGet.Type;
         // var imdbYear = idGet.Year;
         // var runtime = idGet.Runtime;
-        
+        if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
+        if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
+        if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
+        if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
+        if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
+
         
         var movieResultsCard = $("<div>");
         var movieCoverImg = $("<img>");

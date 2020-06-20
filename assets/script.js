@@ -16,7 +16,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         }).then(function(bookGet){
         console.log(bookGet); 
         
-        for (i=0; i<10; i++){
+        for (i=0; i<bookGet.items.length; i++){
         
         
         
@@ -33,9 +33,17 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0]}else{var authors ="Error"}
         if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title="Error" }
         if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle="Error"}
-        if (bookGet.items[i].volumeInfo.imageLinks.thumbnail) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg="Error"}
-        if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink="Error"}
-        if (bookGet.items[i].saleInfo.buyLink) { var buyLink = bookGet.items[i].saleInfo.buyLink} else {var buyLink="Error"}
+        if (bookGet.items[i].volumeInfo.imageLinks) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg=""}
+        // if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink="Error"}
+        if (bookGet.items[i].saleInfo.buyLink) { 
+          var buyLink = bookGet.items[i].saleInfo.buyLink; 
+          var linkBtn = $("<button>");
+          linkBtn.text("Read on Google Books"); 
+          var lineBreak = $("<br>");
+          linkBtn.css({"margin": "10px"});
+          
+          // linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');
+          linkBtn.on("click", function () {window.location = buyLink;})} else {var buyLink="Error"}
 
         var resultsCard = $("<div>");
         var coverImg = $("<img>");
@@ -70,7 +78,7 @@ var googleKey = "AIzaSyCgSuPSLRf6S38F_qQ6Yssx2NdKM2mdtS0";
         resultsCard.append(cardSynop);
 
         resultsCard.append(linkBtn);
-        linkBtn.css({"margin": "10px"})
+        // moved to if statement // linkBtn.css({"margin": "10px"});
         resultsCard.append(lineBreak)
         
         resultsCard.append(coverImg);
