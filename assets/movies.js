@@ -67,6 +67,7 @@ $("#searchBtn").on("click", function() {
         movieResultsCard.append(movieCardDirector);
         movieResultsCard.append(movieCardSynop);
         movieResultsCard.append(trailerBtn);
+        trailerBtn.css({"margin": "10px"})
         movieResultsCard.append(lineBreak);
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
