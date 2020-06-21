@@ -9,7 +9,8 @@ $("#searchBtn").on("click", function() {
     var searchURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apiKey=" + apiKey;
     var movieResultsDiv = $("#movieCol");
     var movieCardContainer = $("<div>");
-    movieCardContainer.attr("id", "moviecontain") //can probably make this a class and share one command, or just use one to clear both sides
+    
+    movieCardContainer.attr("id", "moviecontain")
     
     // Empties the div, so that when the user inputs a new search, they can immediately identify their most recent search results.
     $("#moviecontain").empty();
@@ -33,11 +34,11 @@ $("#searchBtn").on("click", function() {
         url:idURL,
         method: "GET"
       }).then (function(idGet) {
-        if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
-        if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
-        if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
+        if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle =" "}
+        if (idGet.Director) {var director = idGet.Director}else{var director ="No director information available."}
+        if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="No synopsis available."}
         if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
-        if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
+        if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating =" "}
         
         // Variables to make new HTML elements for the card details (movie title, director, rating, and synopsis) and button is created to watch trailers.
         var movieResultsCard = $("<div>");
@@ -78,9 +79,9 @@ $("#searchBtn").on("click", function() {
 })
 });
 
-// A keypress event function that is attached to the form (where the search term is inputted by the user).
-$("form").keypress(function(e) {
-  if (e.which == 13) {
-    return false;
-  }
-});
+  // A keypress event function that is attached to the form (where the search term is inputted by the user).
+    $("form").keypress(function(e) {
+      if (e.which == 13) {
+        return false;
+      }
+    });
