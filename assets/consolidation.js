@@ -143,7 +143,7 @@ $("#searchBtn").on("click", function(event){
           var titleForLink = idGet.Title.split(" ").join("-");
           
           // On "click" function so that clicking the button will lead the user to IMDB where the title of their film is automatically inputted.
-          trailerBtn.attr("onclick", `window.location.href= 'https://www.imdb.com/find?q=${titleForLink}';`);
+          trailerBtn.attr("onclick", `window.open('https://www.imdb.com/find?q=${titleForLink}', '_blank');`);
           
           // Populates HTML with a card with the movie title, director, synopsis, button to access the trailer, and the poster image of the movie.
           movieResultsCard.append(movieCardTitle);
