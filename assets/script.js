@@ -29,8 +29,13 @@ $("#searchBtn").on("click", function(event){
     if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title=" " }
     if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle=" "}
     if (bookGet.items[i].volumeInfo.imageLinks.thumbnail) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg=" "}
-    if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink=" "}
-    if (bookGet.items[i].saleInfo.buyLink) { var buyLink = bookGet.items[i].saleInfo.buyLink} else {var buyLink="No link available to purchase book."}
+    // if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink=" "}
+    if (bookGet.items[i].saleInfo.buyLink) { 
+      var buyLink = bookGet.items[i].saleInfo.buyLink; 
+      var linkBtn = $("<button>");
+      linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.css({"margin": "10px"})
+    } 
+      else {var buyLink="No link available to purchase book."}
 
     // Variables to make new HTML elements for the card details (book title, author, subtitle, and synopsis) and button is created to purchase book title.
     var resultsCard = $("<div>");
@@ -39,7 +44,7 @@ $("#searchBtn").on("click", function(event){
     var cardSubtitle = $("<p>");
     var cardAuthor = $("<p>");
     var cardSynop = $("<p>");
-    var linkBtn = $("<button>");
+    // var linkBtn = $("<button>");
     var lineBreak = $("<br>");
 
     cardTitle.text(title);
@@ -64,7 +69,6 @@ $("#searchBtn").on("click", function(event){
     resultsCard.append(cardAuthor);
     resultsCard.append(cardSynop);
     resultsCard.append(linkBtn);
-    linkBtn.css({"margin": "10px"})
     resultsCard.append(lineBreak)
     resultsCard.append(coverImg);
     cardContainer.append(resultsCard);

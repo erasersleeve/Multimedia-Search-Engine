@@ -21,7 +21,7 @@ $("#searchBtn").on("click", function() {
       url: searchURL,
       method: "GET"
     }).then(function(movieGet) {
-      console.log(movieGet);
+      // console.log(movieGet);
     
     for (i=0; i<movieGet.Search.length; i++) {
   
@@ -35,7 +35,7 @@ $("#searchBtn").on("click", function() {
         url:idURL,
         method: "GET"
       }).then (function(idGet) {
-        console.log(idGet);
+        // console.log(idGet);
         if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle =" "}
         if (idGet.Director) {var director = idGet.Director}else{var director ="No director information available."}
         if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="No synopsis available."}
