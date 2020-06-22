@@ -1,95 +1,74 @@
-// Setup Variables
+// Variable for API Key.
 var apiKey = "da090e9b";
 
+// Function for the search button. User inputs a search term into the input box that is then transferred to a variable. 
 $("#searchBtn").on("click", function() {
     searchTerm = $("#mediaSearch").val();
+    
+    // URL Base for API.
     var searchURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apiKey=" + apiKey;
-    $("#moviecontain").empty();
     var movieResultsDiv = $("#movieCol");
-    var movieDiv = $("#movieResults")
-    // var movieCardContainer = $("<div>");
-    // movieCardContainer.attr("id", "moviecontain") //can probably make this a class and share one command, or just use one to clear both sides
-    movieDiv.empty();
+    var movieCardContainer = $("<div>");
+    
+    movieCardContainer.attr("id", "moviecontain")
+    
+    // Empties the div, so that when the user inputs a new search, they can immediately identify their most recent search results.
+    $("#moviecontain").empty();
+    
+    // Send an AJAX call for the assembled URL to get the movie title.
     $.ajax({
       url: searchURL,
       method: "GET"
     }).then(function(movieGet) {
       console.log(movieGet);
-    // console.log(movieGet);
-    // console.log(movieGet.Search[0].Title);
-    // console.log(movieGet.Search[0].imdbID);
-    // console.log(movieGet.Search[0].Type);
-    // console.log(movieGet.Search[0].Poster);
-    for (i=0; i<movieGet.Search.length; i++) {
     
-      // var searchTitle = movieGet.Search[i].Title;
-      // var searchType = movieGet.Search[i].Type; Might be useful to display or sort by type 
-      // var searchPoster = movieGet.Search[i].Poster;
-      // var resultsCard = $("<div>");
-      // var resultsDiv = $("#movieCol");
-      // var moviePosterImg = $("<img>");
-      // var cardMovieTitle = $("<h4>");
-      // moviePosterImg.attr("src", searchPoster);
-      // cardMovieTitle.text(searchTitle);
-      // resultsCard.attr("class", "card");
-      // resultsCard.append(cardMovieTitle);
-      // resultsCard.append(moviePosterImg);
-      // resultsDiv.append(resultsCard);
-      // resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
+    for (i=0; i<movieGet.Search.length; i++) {
+  
       var searchIMDBid = movieGet.Search[i].imdbID;
+      
+      // URL Base for API.
       var idURL = "https://www.omdbapi.com/?i=" + searchIMDBid + "&apiKey=" + apiKey;
+      
+      // Send an AJAX call for the assembled URL to get various details of the movie from the array.
       $.ajax({ 
         url:idURL,
         method: "GET"
       }).then (function(idGet) {
-
-
-        // console.log(idGet);
-        // console.log("Title: "+idGet.Title);
-        // console.log("Director: "+idGet.Director);
-        // console.log("Genre: "+idGet.Genre);
-        // console.log("Language: "+idGet.Language);
-        // console.log("Poster: "+idGet.Poster);
-        // console.log("Synopsis: "+idGet.Plot);
-        // console.log("Rating: "+idGet.Rated);
-        // console.log("Metascore: "+idGet.Metascore);
-        // console.log("IMDB rating: "+idGet.Ratings[0]);
-        // console.log("Rotten Tomatoes: "+idGet.Ratings[1]);
-        // console.log("Metacritic: "+idGet.Ratings[2]);
-        // console.log("Type: "+idGet.Type);
-        // console.log("Year: "+idGet.Year);
-        // console.log("Runtime: "+idGet.Runtime);
-       
-        // var movieTitle = idGet.Title;
-        // var director = idGet.Director;
-        // var movieSynop = idGet.Plot;
-        // var moviePoster = idGet.Poster;
-        // var imdbRating = idGet.Ratings[0];
-        // var imdbType = idGet.Type;
-        // var imdbYear = idGet.Year;
-        // var runtime = idGet.Runtime;
-        if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle ="Error"}
-        if (idGet.Director) {var director = idGet.Director}else{var director ="Error"}
-        if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="Error"}
+        if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle =" "}
+        if (idGet.Director) {var director = idGet.Director}else{var director ="No director information available."}
+        if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="No synopsis available."}
         if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
-        if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating ="Error"}
-
+        if (idGet.Ratings[0]) {var imdbRating = idGet.Ratings[0]}else{var imdbRating =" "}
         
+        // Variables to make new HTML elements for the card details (movie title, director, rating, and synopsis) and button is created to watch trailers.
         var movieResultsCard = $("<div>");
         var movieCoverImg = $("<img>");
         var movieCardTitle = $("<h4>");
         var movieCardDirector = $("<p>");
         var movieCardSynop = $("<p>");
         var movieCardRating = $("<p>");
-        
+        var trailerBtn = $("<button>");
+        var lineBreak = $("<br>");
         movieCoverImg.attr("src", moviePoster);
         movieCardTitle.html(movieTitle);
         movieCardDirector.html(director);
         movieCardSynop.html(movieSynop);
         movieCardRating.html(imdbRating);
+        
+        // Button displayed. The title of the movie that is pulled is put into a variable where it is split and then separated by dashes.
+        trailerBtn.text("Watch Trailer Here");
+        var titleForLink = idGet.Title.split(" ").join("-");
+        
+        // On "click" function so that clicking the button will lead the user to IMDB where the title of their film is automatically inputted.
+        trailerBtn.attr("onclick", `window.location.href= 'https://www.imdb.com/find?q=${titleForLink}';`);
+        
+        // Populates HTML with a card with the movie title, director, synopsis, button to access the trailer, and the poster image of the movie.
         movieResultsCard.append(movieCardTitle);
         movieResultsCard.append(movieCardDirector);
         movieResultsCard.append(movieCardSynop);
+        movieResultsCard.append(trailerBtn);
+        trailerBtn.css({"margin": "10px"})
+        movieResultsCard.append(lineBreak);
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
         movieResultsCard.attr("class", "card");
@@ -101,8 +80,9 @@ $("#searchBtn").on("click", function() {
 })
 });
 
-$("form").keypress(function(e) {
-  if (e.which == 13) {
-    return false;
-  }
-});
+  // A keypress event function that is attached to the form (where the search term is inputted by the user).
+    $("form").keypress(function(e) {
+      if (e.which == 13) {
+        return false;
+      }
+    });
