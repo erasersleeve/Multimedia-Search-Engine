@@ -161,13 +161,13 @@ $("#searchBtn").on("click", function(event){
           movieResultsCard.append(movieCardTitle);
           movieResultsCard.append(movieCardDirector);
           movieResultsCard.append(movieCardSynop);
-          movieResultsCard.append(trailerBtn);
           trailerBtn.css({"margin": "10px"});
           movieResultsCard.append(lineBreak);
           movieResultsCard.append(movieCardRating);
           movieResultsCard.append(movieCardRated);
           movieResultsCard.append(movieCardRuntime);
           movieResultsCard.append(movieCardReleased);
+          movieResultsCard.append(trailerBtn);
           movieResultsCard.append(movieCoverImg);
           movieResultsCard.attr("class", "card");
           movieDiv.append(movieResultsCard);
