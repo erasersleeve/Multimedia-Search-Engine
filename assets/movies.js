@@ -8,13 +8,14 @@ $("#searchBtn").on("click", function() {
     // URL Base for API.
     var searchURL = "https://www.omdbapi.com/?s=" + searchTerm + "&apiKey=" + apiKey;
     var movieResultsDiv = $("#movieCol");
-    var movieCardContainer = $("<div>");
+    var movieDiv = $("#movieResults")
+    // var movieCardContainer = $("<div>");
     
-    movieCardContainer.attr("id", "moviecontain")
+    // movieCardContainer.attr("id", "moviecontain")
     
     // Empties the div, so that when the user inputs a new search, they can immediately identify their most recent search results.
     $("#moviecontain").empty();
-    
+    movieDiv.empty();
     // Send an AJAX call for the assembled URL to get the movie title.
     $.ajax({
       url: searchURL,
@@ -34,6 +35,7 @@ $("#searchBtn").on("click", function() {
         url:idURL,
         method: "GET"
       }).then (function(idGet) {
+        console.log(idGet);
         if (idGet.Title) {var movieTitle = idGet.Title}else{var movieTitle =" "}
         if (idGet.Director) {var director = idGet.Director}else{var director ="No director information available."}
         if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="No synopsis available."}
@@ -67,7 +69,7 @@ $("#searchBtn").on("click", function() {
         movieResultsCard.append(movieCardDirector);
         movieResultsCard.append(movieCardSynop);
         movieResultsCard.append(trailerBtn);
-        trailerBtn.css({"margin": "10px"})
+        trailerBtn.css({"margin": "10px"});
         movieResultsCard.append(lineBreak);
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
