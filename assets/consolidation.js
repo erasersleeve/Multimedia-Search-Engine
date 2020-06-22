@@ -30,10 +30,13 @@ $("#searchBtn").on("click", function(event){
         if (bookGet.items[i].searchInfo) {var synop = bookGet.items[i].searchInfo.textSnippet}else{var synop ="No synopsis available."}
         // Currently, the author detail only displays the first author. In the case of multiple authors, this is coded to ignore all listed, but the first.
         if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0]}else{var authors ="No author information available."}
-        if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title=" " }
+        if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title=" "}
         if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle=" "}
         if (bookGet.items[i].volumeInfo.imageLinks.thumbnail) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg=" "}
         // if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink=" "}
+        if (bookGet.items[i].volumeInfo.pageCount) {var pageCount = bookGet.items[i].volumeInfo.pageCount} else {var pageCount = ""}
+        if (bookGet.items[i].volumeInfo.publishedDate) {var publishedDate = bookGet.items[i].volumeInfo.publishedDate} else {var publishedDate = ""}
+        if (bookGet.items[i].volumeInfo.averageRating) {var averageRating = bookGet.items[i].volumeInfo.averageRating} else {var averageRating = ""}
         if (bookGet.items[i].saleInfo.buyLink) { 
         var buyLink = bookGet.items[i].saleInfo.buyLink; 
         var linkBtn = $("<button>");
@@ -51,6 +54,9 @@ $("#searchBtn").on("click", function(event){
         var cardSubtitle = $("<p>");
         var cardAuthor = $("<p>");
         var cardSynop = $("<p>");
+        var cardPageCount = $("<p>");
+        var cardPublishedDate = $("<p>");
+        var cardAverageRating = $("<p>");
         // var linkBtn = $("<button>");
         var lineBreak = $("<br>");
 
@@ -58,6 +64,9 @@ $("#searchBtn").on("click", function(event){
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
         cardSynop.html(synop);
+        cardPageCount.html("Page Count: "+pageCount);
+        cardPublishedDate.html("Published: "+publishedDate);
+        cardAverageRating.html("Average Rating: "+averageRating+"/5");
         
         // Button is displayed. On "click" function so that clicking the button will lead the user to Google Books, where the book can be purchased.
         //linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");
@@ -74,8 +83,11 @@ $("#searchBtn").on("click", function(event){
         resultsCard.append(cardAuthor);
         resultsCard.append(cardSynop);
         resultsCard.append(linkBtn);
-        resultsCard.append(lineBreak)
+        resultsCard.append(lineBreak);
         resultsCard.append(coverImg);
+        resultsCard.append(cardPageCount);
+        resultsCard.append(cardPublishedDate);
+        resultsCard.append(cardAverageRating);
         bookDiv.append(resultsCard);
         resultsDiv.append(bookDiv);
         resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
