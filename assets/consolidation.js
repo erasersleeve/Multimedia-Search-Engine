@@ -37,9 +37,11 @@ $("#searchBtn").on("click", function(event){
         if (bookGet.items[i].saleInfo.buyLink) { 
         var buyLink = bookGet.items[i].saleInfo.buyLink; 
         var linkBtn = $("<button>");
-
-        linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");linkBtn.css({"margin": "10px"});
+        // linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");linkBtn.css({"margin": "10px"});
+        linkBtn.text("Read on Google Books");linkBtn.attr("onclick", `window.open('${buyLink}', '_blank');`);linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light").linkBtn.css({"margin": "10px"});
         } 
+        
+
         else {var buyLink="No link available to purchase book."}
 
         // Variables to make new HTML elements for the card details (book title, author, subtitle, and synopsis) and button is created to purchase book title.
@@ -141,7 +143,7 @@ $("#searchBtn").on("click", function(event){
           var titleForLink = idGet.Title.split(" ").join("-");
           
           // On "click" function so that clicking the button will lead the user to IMDB where the title of their film is automatically inputted.
-          trailerBtn.attr("onclick", `window.open('https://www.imdb.com/find?q=${titleForLink}', '_blank');`);
+          trailerBtn.attr("onclick", `window.location.href= 'https://www.imdb.com/find?q=${titleForLink}';`);
           
           // Populates HTML with a card with the movie title, director, synopsis, button to access the trailer, and the poster image of the movie.
           movieResultsCard.append(movieCardTitle);
