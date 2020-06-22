@@ -34,9 +34,9 @@ $("#searchBtn").on("click", function(event){
         if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle=" "}
         if (bookGet.items[i].volumeInfo.imageLinks.thumbnail) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg=" "}
         // if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink=" "}
-        if (bookGet.items[i].volumeInfo.pageCount) {var pageCount = bookGet.items[i].volumeInfo.pageCount} else {var pageCount = ""}
-        if (bookGet.items[i].volumeInfo.publishedDate) {var publishedDate = bookGet.items[i].volumeInfo.publishedDate} else {var publishedDate = ""}
-        if (bookGet.items[i].volumeInfo.averageRating) {var averageRating = bookGet.items[i].volumeInfo.averageRating} else {var averageRating = ""}
+        if (bookGet.items[i].volumeInfo.pageCount) {var pageCount = "Page Count: "+bookGet.items[i].volumeInfo.pageCount} else {var pageCount = ""}
+        if (bookGet.items[i].volumeInfo.publishedDate) {var publishedDate ="Published: "+bookGet.items[i].volumeInfo.publishedDate} else {var publishedDate = ""}
+        if (bookGet.items[i].volumeInfo.averageRating) {var averageRating = "Average Rating: "+bookGet.items[i].volumeInfo.averageRating+"/5"} else {var averageRating = ""}
         if (bookGet.items[i].saleInfo.buyLink) { 
         var buyLink = bookGet.items[i].saleInfo.buyLink; 
         var linkBtn = $("<button>");
@@ -64,9 +64,9 @@ $("#searchBtn").on("click", function(event){
         cardSubtitle.text(subtitle);
         cardAuthor.text(authors);
         cardSynop.html(synop);
-        cardPageCount.html("Page Count: "+pageCount);
-        cardPublishedDate.html("Published: "+publishedDate);
-        cardAverageRating.html("Average Rating: "+averageRating+"/5");
+        cardPageCount.html(pageCount);
+        cardPublishedDate.html(publishedDate);
+        cardAverageRating.html(averageRating);
         
         // Button is displayed. On "click" function so that clicking the button will lead the user to Google Books, where the book can be purchased.
         //linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");
@@ -82,11 +82,11 @@ $("#searchBtn").on("click", function(event){
         resultsCard.append(cardSubtitle);
         resultsCard.append(cardAuthor);
         resultsCard.append(cardSynop);
-        resultsCard.append(linkBtn);
-        resultsCard.append(lineBreak);
         resultsCard.append(cardPageCount);
         resultsCard.append(cardPublishedDate);
         resultsCard.append(cardAverageRating);
+        resultsCard.append(linkBtn);
+        resultsCard.append(lineBreak);
         resultsCard.append(coverImg);
         bookDiv.append(resultsCard);
         resultsDiv.append(bookDiv);
@@ -123,9 +123,9 @@ $("#searchBtn").on("click", function(event){
           if (idGet.Ratings[0]) {var imdbRating = "IMDB rating: "+idGet.Ratings[0].Value}else{var imdbRating =" "}
           //I don't know that the blank variable strings will have the desired results in this case and the case above. Poster should be fine
           //Rated will return N/A from api if there is nothing. Changing it so simply not exist
-          if (idGet.Rated!=="N/A") {var rated = idGet.Rated}else{var rated="MPA rating not available"}
-          if (idGet.Runtime) {var runtime = idGet.Runtime}else{var runtime=""}
-          if (idGet.Released){var released = idGet.Released}else{var released=""}
+          if (idGet.Rated!=="N/A") {var rated = "Rating: "+idGet.Rated}else{var rated="MPA rating not available"}
+          if (idGet.Runtime) {var runtime = "Runtime: "+idGet.Runtime}else{var runtime=""}
+          if (idGet.Released){var released = "Released: "+idGet.Released}else{var released=""}
           
           // Variables to make new HTML elements for the card details (movie title, director, rating, and synopsis) and button is created to watch trailers.
           var movieResultsCard = $("<div>");
