@@ -50,7 +50,8 @@ $("#searchBtn").on("click", function(event){
     // Button is displayed. On "click" function so that clicking the button will lead the user to Google Books, where the book can be purchased.
     linkBtn.text("Read on Google Books");
     linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');
-    
+    linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");
+  
     // Image of the book cover is manipulated, so that the image size is consistent with that of the poster images for the movies.
     coverImg.attr("src", coverLg);
     coverImg.attr("width", 300);
