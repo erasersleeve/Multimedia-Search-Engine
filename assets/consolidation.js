@@ -84,10 +84,10 @@ $("#searchBtn").on("click", function(event){
         resultsCard.append(cardSynop);
         resultsCard.append(linkBtn);
         resultsCard.append(lineBreak);
-        resultsCard.append(coverImg);
         resultsCard.append(cardPageCount);
         resultsCard.append(cardPublishedDate);
         resultsCard.append(cardAverageRating);
+        resultsCard.append(coverImg);
         bookDiv.append(resultsCard);
         resultsDiv.append(bookDiv);
         resultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
@@ -164,11 +164,11 @@ $("#searchBtn").on("click", function(event){
           movieResultsCard.append(trailerBtn);
           trailerBtn.css({"margin": "10px"});
           movieResultsCard.append(lineBreak);
-          movieResultsCard.append(movieCoverImg);
           movieResultsCard.append(movieCardRating);
           movieResultsCard.append(movieCardRated);
           movieResultsCard.append(movieCardRuntime);
           movieResultsCard.append(movieCardReleased);
+          movieResultsCard.append(movieCoverImg);
           movieResultsCard.attr("class", "card");
           movieDiv.append(movieResultsCard);
           movieResultsDiv.append(movieDiv);
