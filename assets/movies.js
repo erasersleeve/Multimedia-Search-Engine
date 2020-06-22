@@ -72,8 +72,8 @@ $("#searchBtn").on("click", function() {
         movieResultsCard.append(movieCoverImg);
         movieResultsCard.append(movieCardRating);
         movieResultsCard.attr("class", "card");
-        movieCardContainer.append(movieResultsCard);
-        movieResultsDiv.append(movieCardContainer);
+        movieDiv.append(movieResultsCard);
+        movieResultsDiv.append(movieDiv);
         movieResultsCard.css({"border-bottom": "solid", "margin": "20px", "padding": "20px"});
         })
     }
