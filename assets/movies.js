@@ -58,7 +58,8 @@ $("#searchBtn").on("click", function() {
         movieCardRating.html(imdbRating);
         
         // Button displayed. The title of the movie that is pulled is put into a variable where it is split and then separated by dashes.
-        trailerBtn.text("Watch Trailer Here");
+        trailerBtn.text("Find Trailer Here");
+        trailerBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");
         var titleForLink = idGet.Title.split(" ").join("-");
         
         // On "click" function so that clicking the button will lead the user to IMDB where the title of their film is automatically inputted.
