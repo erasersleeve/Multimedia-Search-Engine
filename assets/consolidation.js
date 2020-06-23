@@ -32,7 +32,7 @@ $("#searchBtn").on("click", function(event){
         if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0]}else{var authors ="No author information available."}
         if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title=" "}
         if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle=" "}
-        if (bookGet.items[i].volumeInfo.imageLinks.thumbnail) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg=" "}
+        if (bookGet.items[i].volumeInfo.imageLinks) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg=" "}
         // if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink=" "}
         if (bookGet.items[i].volumeInfo.pageCount) {var pageCount = "Page Count: "+bookGet.items[i].volumeInfo.pageCount} else {var pageCount = ""}
         if (bookGet.items[i].volumeInfo.publishedDate) {var publishedDate ="Published: "+bookGet.items[i].volumeInfo.publishedDate} else {var publishedDate = ""}
