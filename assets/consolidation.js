@@ -120,10 +120,10 @@ $("#searchBtn").on("click", function(event){
           if (idGet.Director!=="N/A") {var director = idGet.Director}else{var director ="No director information available."}
           if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="No synopsis available."}
           if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
-          if (idGet.Ratings[0]) {var imdbRating = "IMDB rating: "+idGet.Ratings[0].Value}else{var imdbRating =" "}
+          if (idGet.Ratings[0]) {var imdbRating = "IMDB Rating: "+idGet.Ratings[0].Value}else{var imdbRating =" "}
           //I don't know that the blank variable strings will have the desired results in this case and the case above. Poster should be fine
           //Rated will return N/A from api if there is nothing. Changing it so simply not exist
-          if (idGet.Rated!=="N/A") {var rated = "Rating: "+idGet.Rated}else{var rated="MPA rating not available"}
+          if (idGet.Rated!=="N/A") {var rated = "MPA Rating: "+idGet.Rated}else{var rated="MPA rating is not available."}
           if (idGet.Runtime) {var runtime = "Runtime: "+idGet.Runtime}else{var runtime=""}
           if (idGet.Released){var released = "Released: "+idGet.Released}else{var released=""}
           
