@@ -28,11 +28,9 @@ $("#searchBtn").on("click", function(event){
     
         for (i=0; i<bookGet.items.length; i++){
         if (bookGet.items[i].searchInfo) {var synop = bookGet.items[i].searchInfo.textSnippet}else{var synop ="No synopsis available."}
-        // Currently, the author detail only displays the first author. In the case of multiple authors, this is coded to ignore all listed, but the first.
         if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0]}else{var authors ="No author information available."}
         if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title=" "}
         if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle=" "}
-        // if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink=" "}
         if (bookGet.items[i].volumeInfo.pageCount) {var pageCount = "Page Count: "+bookGet.items[i].volumeInfo.pageCount} else {var pageCount = ""}
         if (bookGet.items[i].volumeInfo.publishedDate) {var publishedDate ="Published: "+bookGet.items[i].volumeInfo.publishedDate} else {var publishedDate = ""}
         if (bookGet.items[i].volumeInfo.averageRating) {var averageRating = "Average Rating: "+bookGet.items[i].volumeInfo.averageRating+"/5"} else {var averageRating = ""}
@@ -46,14 +44,15 @@ $("#searchBtn").on("click", function(event){
         if (bookGet.items[i].saleInfo.buyLink) { 
         var buyLink = bookGet.items[i].saleInfo.buyLink; 
         var linkBtn = $("<button>");
-        // linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");linkBtn.css({"margin": "10px"});
         linkBtn.text("Read on Google Books");linkBtn.attr("onclick", `window.open('${buyLink}', '_blank');`);linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");linkBtn.css({"margin": "10px"});
         } 
-        else {var buyLink="No link available to purchase book."}
+        else {
+        var buyLink = "";
+        var linkBtn = $("<div>");
+        }
 
         // Variables to make new HTML elements for the card details (book title, author, subtitle, and synopsis) and button is created to purchase book title.
         var resultsCard = $("<div>");
-        // var coverImg = $("<img>");
         var cardTitle = $("<h4>");
         var cardSubtitle = $("<p>");
         var cardAuthor = $("<p>");
@@ -61,7 +60,6 @@ $("#searchBtn").on("click", function(event){
         var cardPageCount = $("<p>");
         var cardPublishedDate = $("<p>");
         var cardAverageRating = $("<p>");
-        // var linkBtn = $("<button>");
         var lineBreak = $("<br>");
 
         cardTitle.text(title);
@@ -72,10 +70,8 @@ $("#searchBtn").on("click", function(event){
         cardPublishedDate.html(publishedDate);
         cardAverageRating.html(averageRating);
         
-        // Button is displayed. On "click" function so that clicking the button will lead the user to Google Books, where the book can be purchased.
-        //linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");
     
-        // Image of the book cover is manipulated, so that the image size is consistent with that of the poster images for the movies.
+        
        
         resultsCard.attr("class", "card");
         
@@ -123,8 +119,6 @@ $("#searchBtn").on("click", function(event){
           if (idGet.Plot) {var movieSynop = idGet.Plot}else{var movieSynop ="No synopsis available."}
           if (idGet.Poster && idGet.Poster !=="N/A") {var moviePoster = idGet.Poster}else{var moviePoster =""}
           if (idGet.Ratings[0]) {var imdbRating = "IMDB Rating: "+idGet.Ratings[0].Value}else{var imdbRating =" "}
-          //I don't know that the blank variable strings will have the desired results in this case and the case above. Poster should be fine
-          //Rated will return N/A from api if there is nothing. Changing it so simply not exist
           if (idGet.Rated!=="N/A") {var rated = "MPA Rating: "+idGet.Rated}else{var rated="MPA rating is not available."}
           if (idGet.Runtime) {var runtime = "Runtime: "+idGet.Runtime}else{var runtime=""}
           if (idGet.Released){var released = "Released: "+idGet.Released}else{var released=""}
