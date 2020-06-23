@@ -10,6 +10,14 @@ AS A reader and movie watcher
 I WANT to look up book and movie recommendations and compare the two mediums
 SO THAT I can find information about authors/directors, decide if I am more interested in watching the movie or reading the book, and be directed to links to purchase the book or watch the trailer of the movie that interests me.
 
+# Contributors
+
+1. [Romie Hecdivert](https://github.com/rh9891)
+
+2. [Aakanksha Sharma](https://github.com/asharma1398)
+
+3. [Tim Winters](https://github.com/erasersleeve)
+
 # Links
 
 1. [Link to Deployed Application](https://erasersleeve.github.io/Multimedia-Search-Engine/)
