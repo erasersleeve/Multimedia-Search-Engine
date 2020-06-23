@@ -32,24 +32,28 @@ $("#searchBtn").on("click", function(event){
         if (bookGet.items[i].volumeInfo.authors) {var authors = bookGet.items[i].volumeInfo.authors[0]}else{var authors ="No author information available."}
         if (bookGet.items[i].volumeInfo.title) {var title = bookGet.items[i].volumeInfo.title}else {var title=" "}
         if (bookGet.items[i].volumeInfo.subtitle) {var subtitle = bookGet.items[i].volumeInfo.subtitle}else {var subtitle=" "}
-        if (bookGet.items[i].volumeInfo.imageLinks) {var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail}else {var coverLg=" "}
         // if (bookGet.items[i].selfLink) { var selfLink = bookGet.items[i].selfLink} else {var selfLink=" "}
         if (bookGet.items[i].volumeInfo.pageCount) {var pageCount = "Page Count: "+bookGet.items[i].volumeInfo.pageCount} else {var pageCount = ""}
         if (bookGet.items[i].volumeInfo.publishedDate) {var publishedDate ="Published: "+bookGet.items[i].volumeInfo.publishedDate} else {var publishedDate = ""}
         if (bookGet.items[i].volumeInfo.averageRating) {var averageRating = "Average Rating: "+bookGet.items[i].volumeInfo.averageRating+"/5"} else {var averageRating = ""}
+        if (bookGet.items[i].volumeInfo.imageLinks) {
+          var coverLg = bookGet.items[i].volumeInfo.imageLinks.thumbnail
+          var coverImg = $("<img>");
+          coverImg.attr("src", coverLg); coverImg.attr("width", 300); coverImg.attr("height", 400);
+        }
+        else {var coverLg=""}
+        
         if (bookGet.items[i].saleInfo.buyLink) { 
         var buyLink = bookGet.items[i].saleInfo.buyLink; 
         var linkBtn = $("<button>");
         // linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");linkBtn.css({"margin": "10px"});
         linkBtn.text("Read on Google Books");linkBtn.attr("onclick", `window.open('${buyLink}', '_blank');`);linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");linkBtn.css({"margin": "10px"});
         } 
-        
-
         else {var buyLink="No link available to purchase book."}
 
         // Variables to make new HTML elements for the card details (book title, author, subtitle, and synopsis) and button is created to purchase book title.
         var resultsCard = $("<div>");
-        var coverImg = $("<img>");
+        // var coverImg = $("<img>");
         var cardTitle = $("<h4>");
         var cardSubtitle = $("<p>");
         var cardAuthor = $("<p>");
@@ -72,9 +76,7 @@ $("#searchBtn").on("click", function(event){
         //linkBtn.text("Read on Google Books");linkBtn.attr("onclick", 'window.location.href= \'' + buyLink + '\';');linkBtn.attr("class", "btn blue lighten-1 waves-effect waves-light");
     
         // Image of the book cover is manipulated, so that the image size is consistent with that of the poster images for the movies.
-        coverImg.attr("src", coverLg);
-        coverImg.attr("width", 300);
-        coverImg.attr("height", 400);
+       
         resultsCard.attr("class", "card");
         
         // Populates HTML with a card with the book title, author, synopsis, button to purchase the book, and the cover image of the book.
